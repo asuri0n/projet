@@ -6,7 +6,8 @@
 	    <?php echo $_SESSION['erreur'] ?>
 	</div>
 
-<?php } else if(!empty($_SESSION['succes'])){ ?>
+<?php }
+if(!empty($_SESSION['succes'])){ ?>
 
 	<div class="alert alert-success alert-dismissable">
 	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

@@ -29,16 +29,17 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a class="btn btn-default btn-flat" href="profil.php">Profil</a>
+                      <a class="btn btn-default btn-flat" href="<?php echo SITE_PATH ?>profil">Profil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="login.php?logout" class="btn btn-default btn-flat">Déconnexion</a>
+                      <a href="<?php echo SITE_PATH ?>login.php?logout" class="btn btn-default btn-flat">Déconnexion</a>
                     </div>
                   </li>
                 </ul>
               </li>
             <?php } else { ?>
   					  <li><a href="login.php">Connexion</a></li>
+              <li><a href="register.php">Inscription</a></li>
             <?php } ?>
           </ul>
         </div><!-- /.navbar-custom-menu -->

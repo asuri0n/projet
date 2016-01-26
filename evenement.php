@@ -1,5 +1,9 @@
 <?php 
   session_start();
+
+  // Permet d'éviter le renvoi auto du formulaire F5
+  include 'includes/renvoiFormulaire.php';
+  
   include 'includes/configuration.php';
   include 'includes/connexion.php';
 
@@ -7,7 +11,7 @@
   $pageName = basename($_SERVER['PHP_SELF']);
   include 'includes/head.php';
 
-  if(isset($_GET['id'])){
+  /*if(isset($_GET['id'])){
     $id = $_GET["id"];
     $query = 'SELECT * FROM evenements where id = '.$id; 
     $reponse = $pdo->prepare($query);
@@ -16,7 +20,27 @@
     if(!$evenement){
       header ('location: index.php');
     }
-  }
+  } else {*/
+    if(isset($_POST['rejoindre'])){
+      if(isset($_POST['id']) and $_POST['mot_passe'] != '' and $_POST['id'] != ''){
+        $query = 'SELECT * from evenements WHERE id='.$_POST['id'].' and mot_passe="'.$_POST['mot_passe'].'"'; 
+        $reponse = $pdo->prepare($query);
+        $reponse->execute();
+        $evenement = $reponse->fetch(PDO::FETCH_ASSOC);
+        if(!$evenement){
+          $_SESSION['erreur'] = "L'identifiant ou le mot de passe est erroné !";
+          header ('location: index.php');
+        }
+      }  else {
+        $_SESSION['erreur'] = "Vous devez renseigner un mot de passe et un ID !";
+        header ('location: index.php');
+      }
+    } else {
+      header ('location: index.php'); // Si il n'y a pas d'ID en GET OU si il a pas fait rejoindre evenement
+    }
+  //}
+
+  
 ?>
 
   <body class="hold-transition skin-red layout-top-nav">

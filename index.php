@@ -1,6 +1,11 @@
 <?php 
   session_start();
+  
+  // Permet d'éviter le renvoi auto du formulaire F5
+  include 'includes/renvoiFormulaire.php';
+
   include 'includes/configuration.php';
+  include 'includes/connexion.php';
 
   $title = "Accueil";
   $pageName = basename($_SERVER['PHP_SELF']);
